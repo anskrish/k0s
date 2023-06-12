@@ -31,6 +31,7 @@ git clone https://github.com/anskrish/k0s.git
 cp <your-keyfile-path>/server-account.json .
 
 ```
+##update instance.tf file with project-id
 
 - Apply the changes
 
@@ -118,5 +119,4 @@ kubectl expose pod nginx --type=NodePort --name=nginx-service --port=80 --target
 ```
 http:<second ip>:<node-port>
 
-
-- 
+``` 
