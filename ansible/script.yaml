@@ -1,0 +1,30 @@
+---
+- name: Copy SSH key to remote machines
+  hosts: all  # Specify the target hosts or group of hosts
+
+  vars:
+    ssh_key: "{{ lookup('file', '~/.ssh/id_rsa') }}"  # Specify the path to your SSH public key
+
+  tasks:
+    - name: Install OpenSSH server on Debian-based systems
+      become: true
+      apt:
+        name: openssh-server
+        state: present
+    - name: Copy SSH private key
+      copy:
+        src: ~/.ssh/id_rsa
+        dest: ~/.ssh/id_rsa
+        mode: '0600'
+    - name: Get the latest k0sctl version
+      shell: |
+        VER=$(curl -s https://api.github.com/repos/k0sproject/k0sctl/releases/latest | grep tag_name | cut -d '"' -f 4 | sed 's/v//')
+        wget https://github.com/k0sproject/k0sctl/releases/download/v${VER}/k0sctl-linux-x64 -O k0sctl
+        chmod +x k0sctl
+        sudo mv k0sctl /usr/local/bin
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+      args:
+        executable: /bin/bash
+        chdir: /tmp
+
