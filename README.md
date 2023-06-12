@@ -1,6 +1,6 @@
 # k0s on gcp vm instance
 
-** Prerequisites:
+## Prerequisites:
 
 - Create a VM instance and install Terraform and ansible
 - Generate ssh key and add under gcp vm instances metadata ssh keys
@@ -20,7 +20,7 @@ ssh-keygen
 apt install ansible
 ```
 
-** Steps:
+## Steps:
 
 - Clone the repo
 git clone https://github.com/anskrish/k0s.git
