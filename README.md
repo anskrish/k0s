@@ -36,6 +36,7 @@ cp <your-keyfile-path>/server-account.json .
 - Apply the changes
 
 ```
+terraform init
 terraform apply -auto-approve
 ```
 

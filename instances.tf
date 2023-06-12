@@ -1,5 +1,5 @@
 provider "google" {
-  project     = "<project-id>"
+  project     = "peaceful-tide-385904"
   region      = "us-central1"
   credentials = "./server-account.json"
 }
